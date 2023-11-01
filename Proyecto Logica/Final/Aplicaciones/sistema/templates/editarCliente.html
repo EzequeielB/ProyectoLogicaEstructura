@@ -1,0 +1,54 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestion de Clientes {% endblock title %}
+
+{% block body %}
+<div clas="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card text-white bg-primary">
+            <h4 class="card-title">Gestion Clientes</h4>
+            <form action="/editar/" method="POST">{% csrf_token %}
+                <div class="mb-3">
+
+                    <input type="text"
+                    class="form-control" name="clienteID"  id="clienteID" value="{{cliente.id}}" placeholder="id" readonly required>
+    
+                </div>
+                <div class="mb-3">
+
+                <input type="text"
+                    class="form-control" name="clienteNombre"  id="clienteNombre" value="{{cliente.nombre}}" placeholder="Nombre" required>
+
+                </div>
+                <div class="mb-3">
+
+                    <input type="text"
+                    class="form-control" name="clienteApellido" id="clienteApellido" value="{{cliente.apellido}}" placeholder="Apellido" required>
+
+                </div>
+                <div class="mb-3">
+    
+                <input type="email" class="form-control" name="clienteEmail" id="clienteEmail" value="{{cliente.correo}}" placeholder="abc@mail.com" required>
+
+                </div>
+                <div class="mb-3">
+
+                    <input type="text"
+                    class="form-control" name="clienteDireccion" id="clienteDireccion" value="{{cliente.direccion}}" placeholder="Dirección" required> 
+
+                </div>
+                <div class="mb-3">
+
+                    <input type="text"
+                    class="form-control" name="clienteNumero" id="clienteNumero" value="{{cliente.numeroDeTelefono}}" placeholder="Número de Telefono" required>
+
+                </div>
+
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,85 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestion de Clientes {% endblock title %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card text-white bg-primary">
+          <div class="card-body">
+            <h4 class="card-title">Gestion Clientes</h4>
+            <form action="registrarCliente/" method="POST">{% csrf_token %}
+                <div class="mb-3">
+
+                  <input type="text"
+                    class="form-control" name="clienteNombre" id="clienteNombre" placeholder="Nombre" required>
+
+                </div>
+                <div class="mb-3">
+
+                    <input type="text"
+                      class="form-control" name="clienteApellido" id="clienteApellido" placeholder="Apellido" required>
+
+                </div>
+                <div class="mb-3">
+      
+                  <input type="email" class="form-control" name="clienteEmail" id="clienteEmail" placeholder="abc@mail.com" required>
+
+                </div>
+                <div class="mb-3">
+
+                    <input type="text"
+                      class="form-control" name="clienteDireccion" id="clienteDireccion" placeholder="Dirección" required> 
+
+                  </div>
+                  <div class="mb-3">
+
+                    <input type="text"
+                      class="form-control" name="clienteNumero" id="clienteNumero" placeholder="Número de Telefono" required>
+
+                  </div>
+
+                  <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Lista de Clientes</h1>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Número</th>
+                        <th scope="col" colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for c in clientes %}
+                    <tr class="">
+                        <td scope="row">{{c.id}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.apellido}}</td>
+                        <td>{{c.correo}}</td>
+                        <td>{{c.direccion}}</td>
+                        <td>{{c.numeroDeTelefono}}</td>
+                        <td><a href="editarCliente/{{c.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarCliente/{{c.id}}" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>
+{% endblock body %}
